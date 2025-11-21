@@ -1,0 +1,302 @@
+// Home页面样式 - 完美适配视口
+.home-page {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(135deg, fade(@primary-color, 5%) 0%, fade(@secondary-color, 3%) 100%);
+  overflow: hidden;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+// 页面头部 - 固定高度
+.home-header {
+    padding-top: 40px;
+  width: 100%;
+  height: 80px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 16px;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid fade(@primary-color, 10%);
+  flex-shrink: 0; // 防止压缩
+  box-sizing: border-box;
+
+  &__left,
+  &__right {
+    width: 120px;
+    display: flex;
+  }
+
+  &__left {
+    justify-content: flex-start;
+  }
+
+  &__right {
+    justify-content: flex-end;
+  }
+
+  &__brand {
+    flex: 1;
+    text-align: center;
+    min-width: 0; // 允许文字压缩
+
+    h1 {
+      margin: 0;
+      font-size: clamp(1rem, 4vw, 1.5rem); // 响应式字体大小
+      background: linear-gradient(45deg, @primary-color, @secondary-color);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    &__subtitle {
+      margin: 0;
+      font-size: clamp(0.7rem, 2vw, 0.875rem);
+      color: @text-muted;
+      margin-top: 2px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+
+  .header-button {
+    background: @primary-color;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: @border-radius-base;
+    font-size: clamp(0.7rem, 2vw, 0.875rem);
+    font-weight: 500;
+    cursor: pointer;
+    transition: all @transition-base;
+    white-space: nowrap;
+    min-width: 60px;
+
+    &:hover:not(:disabled) {
+      background: darken(@primary-color, 10%);
+      transform: translateY(-1px);
+    }
+
+    &:disabled {
+      background: @bg-light;
+      color: @text-muted;
+      cursor: not-allowed;
+    }
+
+    &--save {
+      background: @success-color;
+
+      &:hover:not(:disabled) {
+        background: darken(@success-color, 10%);
+      }
+    }
+  }
+}
+
+// 主要内容区域 - 占据剩余高度
+.home-main {
+  flex: 1;
+  width: 100%;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 0;
+  overflow: hidden;
+  box-sizing: border-box;
+
+  .content-area {
+    width: 100%;
+    height: 100%;
+    background: white;
+    border-radius: @border-radius-large;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    min-height: 0;
+  }
+}
+
+// 上传区域
+.upload-area {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all @transition-base;
+  border: 2px dashed fade(@primary-color, 30%);
+  border-radius: @border-radius-large;
+
+  &:hover {
+    border-color: @primary-color;
+    background: fade(@primary-color, 3%);
+  }
+
+  &__content {
+    text-align: center;
+    color: @text-muted;
+
+    svg {
+      color: @primary-color;
+      margin-bottom: @spacing-md;
+    }
+
+    p {
+      margin: 0 0 @spacing-xs 0;
+      font-size: @font-size-large;
+      color: @text-dark;
+      font-weight: 500;
+    }
+
+    span {
+      font-size: @font-size-small;
+      color: @text-muted;
+    }
+  }
+}
+
+// 加载区域
+.loading-area {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: @text-muted;
+
+  .loading-spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid fade(@primary-color, 20%);
+    border-top: 4px solid @primary-color;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-bottom: @spacing-md;
+  }
+
+  p {
+    margin: 0;
+    font-size: @font-size-base;
+    color: @text-muted;
+  }
+}
+
+// 错误区域
+.error-area {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: @error-color;
+  text-align: center;
+
+  svg {
+    color: @error-color;
+    margin-bottom: @spacing-md;
+  }
+
+  p {
+    margin: 0 0 @spacing-md 0;
+    font-size: @font-size-base;
+    color: @text-muted;
+    max-width: 300px;
+  }
+
+  .retry-button {
+    background: @primary-color;
+    color: white;
+    border: none;
+    padding: @spacing-xs @spacing-md;
+    border-radius: @border-radius-base;
+    font-size: @font-size-small;
+    cursor: pointer;
+    transition: all @transition-base;
+
+    &:hover {
+      background: darken(@primary-color, 10%);
+    }
+  }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+// 图片容器
+.image-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden; // 防止图片溢出
+
+  .image-container-inner {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: auto;
+  }
+
+  .main-image {
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: contain; // 保持宽高比，完全适应容器
+    cursor: crosshair;
+    user-select: none;
+    border-radius: @border-radius-base;
+  }
+}
+
+
+
+// 页面底部 - 固定高度按钮组
+.home-footer {
+  width: 100%;
+  height: 80px;
+  background: white;
+  border-top: 1px solid fade(@primary-color, 10%);
+  flex-shrink: 0;
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+
+  .footer-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: clamp(8px, 2vw, 24px); // 响应式间距
+    padding: 0 16px;
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden; // 防止溢出
+    box-sizing: border-box;
+  }
+}
+
+
+

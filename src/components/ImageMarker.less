@@ -1,0 +1,22 @@
+// 图片标记样式
+.image-marker {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+  z-index: 10;
+  transition: all @transition-base;
+
+  &:hover {
+    transform: translate(-50%, -50%) scale(1.1);
+  }
+
+  svg {
+    drop-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+  }
+
+  // 添加点击反馈动画
+  &:active {
+    transform: translate(-50%, -50%) scale(0.95);
+  }
+}

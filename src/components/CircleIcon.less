@@ -1,0 +1,89 @@
+// CircleIcon 组件样式 - 自适应设计
+.circle-icon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  transition: all @transition-base;
+  flex: 1;
+  max-width: 80px;
+  min-width: 50px;
+
+  // SVG 容器 - 响应式大小
+  svg {
+    width: clamp(32px, 6vw, 48px);
+    height: clamp(32px, 6vw, 48px);
+    transition: transform @transition-base;
+  }
+
+  // 标签文字 - 响应式字体
+  &__label {
+    margin-top: 4px;
+    font-size: clamp(10px, 2vw, 12px);
+    color: @text-muted;
+    text-align: center;
+    transition: color @transition-base;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100%;
+  }
+
+  // 激活状态
+  &.active {
+    .circle-icon__label {
+      color: @text-dark;
+      font-weight: 500;
+    }
+
+    svg {
+      transform: scale(1.1);
+    }
+  }
+
+  // 禁用状态
+  &.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+
+    &:hover svg {
+      transform: none;
+    }
+  }
+
+  // 删除按钮特殊样式
+  &.delete-button {
+    .circle-icon__label {
+      color: @error-color;
+      font-weight: 500;
+    }
+
+    svg {
+      transform: scale(1.1);
+    }
+  }
+
+  // 点击效果
+  &:not(.disabled):active {
+    svg {
+      transform: scale(0.95);
+    }
+  }
+
+  // 桌面端优化
+  &:not(.disabled):hover svg {
+    transform: scale(1.05);
+  }
+
+  &.active:not(.disabled):hover svg {
+    transform: scale(1.15);
+  }
+
+  &.delete-button:not(.disabled):hover svg {
+    transform: scale(1.15);
+  }
+}

@@ -1,0 +1,84 @@
+// App组件样式 - 使用全局变量
+
+#root {
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+
+  &:hover {
+    filter: drop-shadow(0 0 2em fade(@primary-color, 67%));
+  }
+
+  &.react:hover {
+    filter: drop-shadow(0 0 2em fade(@secondary-color, 67%));
+  }
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
+
+.card {
+  padding: @spacing-lg;
+}
+
+.read-the-docs {
+  color: @text-muted;
+}
+
+// App容器样式
+.app-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.page-switcher {
+  position: fixed;
+  top: @spacing-md;
+  right: @spacing-md;
+  z-index: 1000;
+}
+
+.demo-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: @spacing-lg;
+}
+
+// 按钮展示区域样式
+.button-showcase {
+  margin-top: @spacing-xl;
+  
+  h3 {
+    margin-bottom: @spacing-md;
+    color: @primary-color;
+  }
+  
+  .button-group {
+    display: flex;
+    gap: @spacing-sm;
+    margin-bottom: @spacing-md;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}

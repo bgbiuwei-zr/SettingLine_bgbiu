@@ -1,0 +1,105 @@
+// 确认对话框样式
+.confirm-dialog-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  animation: fadeIn 0.2s ease-out;
+}
+
+.confirm-dialog {
+  background: white;
+  border-radius: @border-radius-large;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+  max-width: 400px;
+  width: 90%;
+  animation: slideUp 0.3s ease-out;
+
+  &__header {
+    padding: @spacing-lg @spacing-lg @spacing-sm @spacing-lg;
+    border-bottom: 1px solid fade(@primary-color, 10%);
+
+    h3 {
+      margin: 0;
+      font-size: @font-size-xl;
+      color: @text-dark;
+      text-align: center;
+    }
+  }
+
+  &__body {
+    padding: @spacing-lg;
+
+    p {
+      margin: 0;
+      font-size: @font-size-base;
+      color: @text-muted;
+      text-align: center;
+      line-height: 1.5;
+    }
+  }
+
+  &__footer {
+    display: flex;
+    gap: @spacing-sm;
+    padding: @spacing-sm @spacing-lg @spacing-lg @spacing-lg;
+  }
+
+  &__button {
+    flex: 1;
+    padding: @spacing-sm @spacing-md;
+    border: none;
+    border-radius: @border-radius-base;
+    font-size: @font-size-base;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all @transition-base;
+
+    &--cancel {
+      background: @bg-light;
+      color: @text-muted;
+      border: 1px solid fade(@primary-color, 20%);
+
+      &:hover {
+        background: fade(@primary-color, 5%);
+        color: @text-dark;
+      }
+    }
+
+    &--confirm {
+      background: @error-color;
+      color: white;
+
+      &:hover {
+        background: darken(@error-color, 10%);
+      }
+    }
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
