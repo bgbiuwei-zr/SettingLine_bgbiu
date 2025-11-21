@@ -1,7 +1,16 @@
-// Home页面样式 - 完美适配视口
+// Home页面样式 - 完美适配视口，兼容Safari
 .home-page {
   width: 100vw;
-  height: 100vh;
+  
+  // Safari兼容性处理 - 动态视口高度
+  height: 100vh; // 回退方案
+  height: 96vh; // 动态视口高度，自动适配Safari菜单栏
+  
+  // 对于不支持dvh的浏览器，使用calc计算
+//   @supports not (height: 100dvh) {
+//     height: calc(100vh - env(safe-area-inset-bottom, 0px));
+//   }
+  
   display: flex;
   flex-direction: column;
   background: linear-gradient(135deg, fade(@primary-color, 5%) 0%, fade(@secondary-color, 3%) 100%);
@@ -9,6 +18,13 @@
   position: fixed;
   top: 0;
   left: 0;
+  
+  // iOS Safari特殊处理
+  -webkit-overflow-scrolling: touch;
+  
+  // 确保底部安全区域不被遮挡
+//   padding-bottom: env(safe-area-inset-bottom, 0px);
+  box-sizing: border-box;
 }
 
 // 页面头部 - 固定高度
@@ -272,7 +288,7 @@
 
 
 
-// 页面底部 - 固定高度按钮组
+// 页面底部 - 固定高度按钮组，兼容Safari底部菜单栏
 .home-footer {
   width: 100%;
   height: 80px;
@@ -284,6 +300,14 @@
   align-items: center;
   justify-content: center;
   box-sizing: border-box;
+  
+  // Safari底部安全区域处理
+//   padding-bottom: env(safe-area-inset-bottom, 0px);
+  
+  // 确保在有底部安全区域时增加高度
+  @supports (padding-bottom: env(safe-area-inset-bottom)) {
+    height: calc(80px + env(safe-area-inset-bottom, 0px));
+  }
 
   .footer-buttons {
     display: flex;
@@ -295,6 +319,9 @@
     max-width: 100%;
     overflow: hidden; // 防止溢出
     box-sizing: border-box;
+    
+    // 确保按钮在安全区域内
+    margin-bottom: env(safe-area-inset-bottom, 0px);
   }
 }
 
