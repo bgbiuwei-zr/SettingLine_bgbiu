@@ -6,6 +6,31 @@
   margin: 0;
   padding: 0;
   overflow: hidden;
+  
+  // 禁用文本选择 - 原生App体验
+  -webkit-user-select: none; /* Safari */
+  -moz-user-select: none;    /* Firefox */
+  -ms-user-select: none;     /* IE10+/Edge */
+  user-select: none;         /* 标准属性 */
+  
+  // 禁用文本高亮
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-tap-highlight-color: transparent; /* 移除点击高亮 */
+  
+  // 禁用长按菜单
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  
+  // 禁用拖拽
+  -webkit-user-drag: none;
+  -khtml-user-drag: none;
+  -moz-user-drag: none;
+  -o-user-drag: none;
+  user-drag: none;
 }
 
 .logo {

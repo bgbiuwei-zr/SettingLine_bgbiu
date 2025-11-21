@@ -46,6 +46,19 @@ body {
   height: 100vh;
   overflow: hidden;
   box-sizing: border-box;
+  
+  // 原生App体验优化
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  
+  // 禁用iOS Safari的弹性滚动
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: none;
+  
+  // 禁用双击缩放
+  touch-action: manipulation;
 }
 
 h1 {
@@ -64,6 +77,12 @@ button {
   color: @text-dark;
   cursor: pointer;
   transition: border-color 0.25s;
+  
+  // 按钮也不可选择
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 
   &:hover {
     border-color: @primary-color;
@@ -73,5 +92,31 @@ button {
   &:focus-visible {
     outline: 4px auto -webkit-focus-ring-color;
   }
+}
+
+// 特殊元素保留文本选择功能
+input, textarea, [contenteditable="true"] {
+  -webkit-user-select: text !important;
+  -moz-user-select: text !important;
+  -ms-user-select: text !important;
+  user-select: text !important;
+}
+
+// 图片不可拖拽
+img {
+  -webkit-user-drag: none;
+  -khtml-user-drag: none;
+  -moz-user-drag: none;
+  -o-user-drag: none;
+  user-drag: none;
+  
+  // 禁用图片的右键菜单
+  -webkit-touch-callout: none;
+  pointer-events: none; // 如果不需要图片交互的话
+}
+
+// 为需要交互的图片恢复pointer-events
+.interactive-image {
+  pointer-events: auto;
 }
 

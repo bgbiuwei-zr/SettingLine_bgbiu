@@ -269,7 +269,7 @@ const Home: React.FC = () => {
           </button>
         </div>
         <div className="home-header__brand">
-          <h1>SettingLine_0。o</h1>
+          <h1>SL</h1>
         </div>
         <div className="home-header__right">
           <button 
@@ -334,7 +334,7 @@ const Home: React.FC = () => {
                         ref={imageRef}
                         src={imageInfo.src}
                         alt="标记图片"
-                        className="main-image"
+                        className="main-image interactive-image"
                         onClick={handleImageClick}
                         onError={() => setError('图片显示失败')}
                     />
